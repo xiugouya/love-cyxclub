@@ -411,7 +411,9 @@
 
         async function fetchMessages() {
             try {
-                const res = await fetch(`${API_BASE}/api/messages`);
+                const res = await fetch(`${API_BASE}/api/messages`, {
+                    headers: { 'ngrok-skip-browser-warning': 'true' }
+                });
                 if (!res.ok) throw new Error('fetch failed');
                 return await res.json();
             } catch (e) { console.error('获取留言失败:', e); return []; }
@@ -420,7 +422,7 @@
         async function postMessage(data) {
             const res = await fetch(`${API_BASE}/api/messages`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
                 body: JSON.stringify(data)
             });
             if (!res.ok) throw new Error('post failed');
@@ -428,7 +430,7 @@
         }
 
         async function likeMessage(id) {
-            const res = await fetch(`${API_BASE}/api/messages/${id}/like`, { method: 'POST' });
+            const res = await fetch(`${API_BASE}/api/messages/${id}/like`, { method: 'POST', headers: { 'ngrok-skip-browser-warning': 'true' } });
             if (!res.ok) throw new Error('like failed');
             return await res.json();
         }
