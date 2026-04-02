@@ -1,518 +1,512 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>爱心节 · 九（3）班 | CYX俱乐部</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      min-height: 100vh;
-      background: #fff5f5;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      color: #333;
-      line-height: 1.8;
-    }
-    /* 顶部横幅 */
-    .hero {
-      background: linear-gradient(135deg, #e74c3c 0%, #ff6b81 50%, #ff8e53 100%);
-      color: #fff;
-      text-align: center;
-      padding: 80px 20px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 40px;
-      background: #fff5f5;
-      clip-path: ellipse(55% 100% at 50% 100%);
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
-    .hero .emoji-row {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      max-width: 500px;
-      margin: 0 auto;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九（3）爱心节</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css">
+    <style>
+        :root {
+            --love-red: #e74c3c;
+            --love-pink: #ff6b81;
+            --love-dark: #1a1a2e;
+            --love-card: #16213e;
+            --love-border: #2a2a4a;
+            --love-text: #e0e0e0;
+            --love-gray: #888;
+        }
 
-    /* 内容区 */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* 赞助商横幅 */
-    .sponsor {
-      background: #fff;
-      border: 2px solid #fecaca;
-      border-radius: 16px;
-      padding: 24px 32px;
-      margin: -30px auto 40px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(231,76,60,0.08);
-      position: relative;
-    }
-    .sponsor-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #e74c3c, #ff6b81);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 3px 12px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .sponsor h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-    }
-    .sponsor p {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-    }
-    .sponsor a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #e74c3c;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-    }
-    .sponsor a:hover {
-      color: #c0392b;
-      transform: translateX(3px);
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--love-dark);
+            color: var(--love-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    /* 活动信息 */
-    .section {
-      background: #fff;
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .section h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #e74c3c;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section h3::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 22px;
-      background: linear-gradient(180deg, #e74c3c, #ff6b81);
-      border-radius: 2px;
-    }
+        /* 浮动爱心背景 */
+        .hearts-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hearts-bg span {
+            position: absolute;
+            bottom: -40px;
+            font-size: 20px;
+            opacity: 0.12;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0.12; }
+            50%  { opacity: 0.2; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-    }
-    .info-card {
-      background: #fef9f9;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .info-card .icon { font-size: 2rem; margin-bottom: 8px; }
-    .info-card .label {
-      font-size: 0.75rem;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    .info-card .value {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #1a1a1a;
-    }
+        /* 顶部赞助条 */
+        .sponsor-bar {
+            background: linear-gradient(90deg, var(--love-red), var(--love-pink));
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            z-index: 10;
+        }
+        .sponsor-bar a {
+            color: #fff;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: opacity 0.3s;
+        }
+        .sponsor-bar a:hover { opacity: 0.8; }
 
-    /* 留言板 */
-    .guestbook { margin-bottom: 40px; }
+        /* 主标题区 */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-icon {
+            font-size: 64px;
+            color: var(--love-pink);
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--love-pink), #fff, var(--love-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: var(--love-gray);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
 
-    .msg-form {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .msg-form .row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .msg-form input {
-      flex: 1;
-      padding: 10px 14px;
-      border: 1.5px solid #f0e0e0;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-      font-family: inherit;
-    }
-    .msg-form input:focus { border-color: #e74c3c; }
-    .msg-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #f0e0e0;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      resize: vertical;
-      min-height: 80px;
-      outline: none;
-      transition: border-color 0.2s;
-      font-family: inherit;
-    }
-    .msg-form textarea:focus { border-color: #e74c3c; }
-    .msg-form .emoji-row-input {
-      display: flex;
-      gap: 6px;
-      margin: 10px 0;
-      flex-wrap: wrap;
-    }
-    .msg-form .emoji-btn {
-      background: #fef5f5;
-      border: 1.5px solid #f0e0e0;
-      border-radius: 8px;
-      padding: 4px 10px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .msg-form .emoji-btn:hover,
-    .msg-form .emoji-btn.active {
-      background: #fee;
-      border-color: #e74c3c;
-      transform: scale(1.15);
-    }
-    .msg-form .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #e74c3c, #ff6b81);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 4px;
-      font-family: inherit;
-    }
-    .msg-form .submit-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(231,76,60,0.3);
-    }
+        /* 内容区 */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* 留言列表 */
-    .msg-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .msg-card {
-      background: #fff;
-      border-radius: 14px;
-      padding: 20px 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      position: relative;
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .msg-card .msg-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .msg-card .msg-name {
-      font-weight: 700;
-      color: #e74c3c;
-      font-size: 0.95rem;
-    }
-    .msg-card .msg-emoji {
-      font-size: 1.3rem;
-    }
-    .msg-card .msg-body {
-      color: #444;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 8px;
-    }
-    .msg-card .msg-time {
-      font-size: 0.75rem;
-      color: #bbb;
-    }
-    .msg-card .msg-like {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: 1.5px solid #f0e0e0;
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: #999;
-    }
-    .msg-card .msg-like:hover,
-    .msg-card .msg-like.liked {
-      border-color: #e74c3c;
-      color: #e74c3c;
-      background: #fef5f5;
-    }
-    .empty-msg {
-      text-align: center;
-      color: #ccc;
-      padding: 40px 20px;
-      font-size: 0.95rem;
-    }
+        /* 卡片 */
+        .section-card {
+            background: rgba(22, 33, 62, 0.6);
+            border: 1px solid var(--love-border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s;
+        }
+        .section-card:hover { border-color: var(--love-pink); }
+        .section-card h2 {
+            font-size: 20px;
+            color: var(--love-pink);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .section-card h2 i { margin-right: 8px; }
 
-    /* 页脚 */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #bbb;
-      font-size: 0.8rem;
-    }
-    .footer a { color: #e74c3c; text-decoration: none; }
+        /* 招揽话语 */
+        .welcome-text {
+            text-align: center;
+            padding: 16px 0;
+        }
+        .welcome-text p {
+            font-size: 16px;
+            line-height: 2;
+            color: var(--love-text);
+        }
+        .welcome-text .highlight {
+            color: var(--love-pink);
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .welcome-text .tag {
+            display: inline-block;
+            margin: 8px 4px;
+            padding: 4px 14px;
+            background: rgba(231,76,60,0.15);
+            border: 1px solid rgba(231,76,60,0.3);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--love-pink);
+        }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
-      .section { padding: 24px; }
-      .msg-form .row { flex-direction: column; }
-    }
-  </style>
+        /* 留言板 */
+        .guestbook { margin-bottom: 24px; }
+        .msg-subtitle {
+            color: var(--love-gray);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .msg-form {
+            background: var(--love-card);
+            border: 1px solid var(--love-border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .msg-form .row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .msg-form input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid var(--love-border);
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            color: var(--love-text);
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .msg-form input:focus { border-color: var(--love-pink); }
+        .msg-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid var(--love-border);
+            border-radius: 10px;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 80px;
+            outline: none;
+            color: var(--love-text);
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .msg-form textarea:focus { border-color: var(--love-pink); }
+        .msg-form input::placeholder, .msg-form textarea::placeholder { color: #555; }
+
+        .emoji-row-input {
+            display: flex;
+            gap: 6px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .emoji-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid var(--love-border);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .emoji-btn:hover, .emoji-btn.active {
+            background: rgba(231,76,60,0.2);
+            border-color: var(--love-pink);
+            transform: scale(1.15);
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--love-red), var(--love-pink));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+            font-family: inherit;
+        }
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(231,76,60,0.3);
+        }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .msg-count { text-align: right; color: var(--love-gray); font-size: 13px; margin-bottom: 12px; }
+        .msg-list { display: flex; flex-direction: column; gap: 12px; }
+        .msg-card {
+            background: var(--love-card);
+            border: 1px solid var(--love-border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+            transition: border-color 0.3s;
+        }
+        .msg-card:hover { border-color: var(--love-pink); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .msg-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .msg-name { font-weight: 700; color: var(--love-pink); font-size: 15px; }
+        .msg-emoji { font-size: 1.3rem; }
+        .msg-body { color: var(--love-text); font-size: 15px; line-height: 1.7; margin-bottom: 8px; }
+        .msg-time { font-size: 12px; color: var(--love-gray); }
+        .msg-like {
+            position: absolute; top: 16px; right: 16px;
+            background: none; border: 1.5px solid var(--love-border);
+            border-radius: 20px; padding: 3px 10px;
+            font-size: 13px; cursor: pointer;
+            transition: all 0.2s; color: var(--love-gray);
+        }
+        .msg-like:hover, .msg-like.liked {
+            border-color: var(--love-pink);
+            color: var(--love-pink);
+            background: rgba(231,76,60,0.15);
+        }
+        .empty-msg { text-align: center; color: var(--love-gray); padding: 40px 20px; font-size: 15px; }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--love-border);
+            position: relative;
+            z-index: 1;
+        }
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--love-pink);
+            margin-bottom: 8px;
+        }
+        .footer p { font-size: 13px; color: var(--love-gray); }
+        .footer a {
+            color: var(--love-pink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+        .footer a:hover { opacity: 0.7; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 30px; }
+            .hero { padding: 60px 16px 30px; }
+            .section-card, .msg-form { padding: 24px 20px; }
+            .msg-form .row { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="hero">
-    <div class="emoji-row">❤️ 🔥 ❤️</div>
-    <h1>爱心节</h1>
-    <p>九（3）班 · 让爱传递，温暖每一颗心</p>
-  </div>
+    <!-- 浮动爱心 -->
+    <div class="hearts-bg" id="heartsBg"></div>
 
-  <div class="container">
-
-    <!-- 赞助商横幅 -->
-    <div class="sponsor">
-      <div class="sponsor-badge">独家赞助</div>
-      <h2>🌟 CYX俱乐部 独家赞助 🌟</h2>
-      <p>本活动由 CYX俱乐部 独家赞助支持</p>
-      <a href="https://cyxclub.top">前往 cyxclub.top →</a>
+    <!-- 赞助条 -->
+    <div class="sponsor-bar">
+        <i class="fas fa-heart"></i> 本网站由 <a href="https://cyxclub.top" target="_blank">CYX俱乐部</a> 赞助
     </div>
 
-    <!-- 活动信息 -->
-    <div class="section">
-      <h3>活动信息</h3>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="icon">🏫</div>
-          <div class="label">班级</div>
-          <div class="value">九（3）班</div>
-        </div>
-        <div class="info-card">
-          <div class="icon">💝</div>
-          <div class="label">活动</div>
-          <div class="value">爱心节</div>
-        </div>
-      </div>
-    </div>
+    <!-- 主标题 -->
+    <section class="hero">
+        <div class="hero-icon"><i class="fas fa-heart"></i></div>
+        <h1>爱心节</h1>
+        <p>用爱心点亮校园，以行动传递美好</p>
+    </section>
 
-    <!-- 留言板 -->
-    <div class="section guestbook">
-      <h3>留言板</h3>
-      <p style="color:#888; margin-bottom:20px; font-size:0.9rem;">写下你对九（3）班爱心节的祝福吧 ✨</p>
+    <div class="content">
 
-      <!-- 留言表单 -->
-      <div class="msg-form">
-        <div class="row">
-          <input type="text" id="msgName" placeholder="你的昵称" maxlength="20">
-        </div>
-        <textarea id="msgText" placeholder="写下你的留言..." maxlength="300"></textarea>
-        <div class="emoji-row-input" id="emojiRow">
-          <button class="emoji-btn" data-emoji="❤️">❤️</button>
-          <button class="emoji-btn" data-emoji="🥰">🥰</button>
-          <button class="emoji-btn" data-emoji="👏">👏</button>
-          <button class="emoji-btn" data-emoji="🎉">🎉</button>
-          <button class="emoji-btn" data-emoji="🔥">🔥</button>
-          <button class="emoji-btn" data-emoji="💪">💪</button>
-          <button class="emoji-btn" data-emoji="✨">✨</button>
-          <button class="emoji-btn" data-emoji="🌈">🌈</button>
-          <button class="emoji-btn" data-emoji="🌻">🌻</button>
-          <button class="emoji-btn" data-emoji="🕊️">🕊️</button>
-        </div>
-        <button class="submit-btn" id="submitBtn">发送留言 ❤️</button>
-      </div>
-
-      <!-- 留言列表 -->
-      <div class="msg-list" id="msgList">
-        <div class="empty-msg">还没有留言，来做第一个吧 💌</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    <p>由 <a href="https://cyxclub.top">CYX俱乐部</a> 独家赞助 ❤️</p>
-    <p style="margin-top:4px;">love.cyxclub.top</p>
-  </div>
-
-  <script>
-    // 使用 localStorage 存储留言（纯前端方案）
-    const STORAGE_KEY = 'love_guestbook_messages';
-
-    function getMessages() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch { return []; }
-    }
-
-    function saveMessages(msgs) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
-    }
-
-    function formatTime(ts) {
-      const d = new Date(ts);
-      const pad = n => String(n).padStart(2, '0');
-      return `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-    }
-
-    function renderMessages() {
-      const list = document.getElementById('msgList');
-      const msgs = getMessages();
-      if (msgs.length === 0) {
-        list.innerHTML = '<div class="empty-msg">还没有留言，来做第一个吧 💌</div>';
-        return;
-      }
-      // 最新的在前面
-      list.innerHTML = msgs.slice().reverse().map((m, i) => {
-        const realIndex = msgs.length - 1 - i;
-        const liked = (m.likedBy || []).includes(getMyId());
-        return `
-          <div class="msg-card">
-            <div class="msg-header">
-              <span class="msg-name">${esc(m.name || '匿名')}</span>
-              <span class="msg-emoji">${esc(m.emoji || '')}</span>
+        <!-- 招揽话语 -->
+        <div class="section-card">
+            <h2><i class="fas fa-store"></i> 欢迎光临</h2>
+            <div class="welcome-text">
+                <p>
+                    <span class="highlight">九（3）班爱心小铺</span> 现已开张！
+                </p>
+                <p>
+                    手工美食、精美物件、趣味游戏……<br>
+                    每一份消费，都是一份爱心
+                </p>
+                <p style="margin-top: 12px;">
+                    <span class="tag">📍 地点：九（3）班</span>
+                    <span class="tag">💝 全部收入捐赠公益</span>
+                </p>
+                <p style="margin-top: 16px; font-size: 15px;">
+                    欢迎来逛！路过的同学、老师、家长们，<br>
+                    九（3）班等你来玩！
+                </p>
             </div>
-            <div class="msg-body">${esc(m.text)}</div>
-            <div class="msg-time">${formatTime(m.time)}</div>
-            <button class="msg-like ${liked ? 'liked' : ''}" onclick="toggleLike(${realIndex})">
-              ❤️ ${m.likes || 0}
-            </button>
-          </div>`;
-      }).join('');
-    }
+        </div>
 
-    function esc(s) {
-      const d = document.createElement('div');
-      d.textContent = s;
-      return d.innerHTML;
-    }
+        <!-- 留言板 -->
+        <div class="section-card guestbook">
+            <h2><i class="fas fa-comments"></i> 留言板</h2>
+            <p class="msg-subtitle">写下你对九（3）班爱心节的祝福</p>
 
-    function getMyId() {
-      let id = localStorage.getItem('love_guestbook_uid');
-      if (!id) {
-        id = 'u_' + Math.random().toString(36).slice(2, 10);
-        localStorage.setItem('love_guestbook_uid', id);
-      }
-      return id;
-    }
+            <div class="msg-form">
+                <div class="row">
+                    <input type="text" id="msgName" placeholder="你的昵称" maxlength="20">
+                </div>
+                <textarea id="msgText" placeholder="有爱评论，说点好听的" maxlength="300"></textarea>
+                <div class="emoji-row-input">
+                    <button class="emoji-btn" data-emoji="❤️">❤️</button>
+                    <button class="emoji-btn" data-emoji="🥰">🥰</button>
+                    <button class="emoji-btn" data-emoji="👏">👏</button>
+                    <button class="emoji-btn" data-emoji="🎉">🎉</button>
+                    <button class="emoji-btn" data-emoji="🔥">🔥</button>
+                    <button class="emoji-btn" data-emoji="💪">💪</button>
+                    <button class="emoji-btn" data-emoji="✨">✨</button>
+                    <button class="emoji-btn" data-emoji="🌈">🌈</button>
+                    <button class="emoji-btn" data-emoji="🌻">🌻</button>
+                    <button class="emoji-btn" data-emoji="🕊️">🕊️</button>
+                </div>
+                <button class="submit-btn" id="submitBtn">发送留言 ❤️</button>
+            </div>
 
-    // 选择 emoji
-    let selectedEmoji = '';
-    document.querySelectorAll('.emoji-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.toggle('active');
-        selectedEmoji = btn.classList.contains('active') ? btn.dataset.emoji : '';
-      });
-    });
+            <div class="msg-count" id="msgCount"></div>
+            <div class="msg-list" id="msgList">
+                <div class="empty-msg">加载中...</div>
+            </div>
+        </div>
 
-    // 提交留言
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      const name = document.getElementById('msgName').value.trim();
-      const text = document.getElementById('msgText').value.trim();
-      if (!text) { alert('请输入留言内容'); return; }
+    </div>
 
-      const msgs = getMessages();
-      msgs.push({
-        name: name || '匿名',
-        text,
-        emoji: selectedEmoji,
-        time: Date.now(),
-        likes: 0,
-        likedBy: []
-      });
-      saveMessages(msgs);
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-logo">CYX 俱乐部</div>
+        <p><a href="https://cyxclub.top"><i class="fas fa-external-link-alt"></i> 访问CYX俱乐部官网</a></p>
+        <p style="margin-top: 10px;">© 2026 CYX俱乐部. All rights reserved.</p>
+    </footer>
 
-      document.getElementById('msgText').value = '';
-      document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
-      selectedEmoji = '';
-      renderMessages();
-    });
+    <script>
+        // ============================================
+        // 后端 API 地址 — 替换为你自己的后端地址
+        // 本地测试: http://localhost:3000
+        // 部署后改成服务器地址，例如: http://123.45.67.89:3000
+        // ============================================
+        const API_BASE = 'https://orientally-statued-dewitt.ngrok-free.dev';
 
-    // 点赞
-    function toggleLike(idx) {
-      const msgs = getMessages();
-      const uid = getMyId();
-      const m = msgs[idx];
-      if (!m) return;
-      if (!m.likedBy) m.likedBy = [];
-      const pos = m.likedBy.indexOf(uid);
-      if (pos >= 0) {
-        m.likedBy.splice(pos, 1);
-        m.likes = Math.max(0, (m.likes || 0) - 1);
-      } else {
-        m.likedBy.push(uid);
-        m.likes = (m.likes || 0) + 1;
-      }
-      saveMessages(msgs);
-      renderMessages();
-    }
+        function esc(s) {
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
+        }
 
-    // 初始渲染
-    renderMessages();
-  </script>
+        function formatTime(ts) {
+            const d = new Date(ts);
+            const pad = n => String(n).padStart(2, '0');
+            return `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+        }
+
+        async function fetchMessages() {
+            try {
+                const res = await fetch(`${API_BASE}/api/messages`);
+                if (!res.ok) throw new Error('fetch failed');
+                return await res.json();
+            } catch (e) { console.error('获取留言失败:', e); return []; }
+        }
+
+        async function postMessage(data) {
+            const res = await fetch(`${API_BASE}/api/messages`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (!res.ok) throw new Error('post failed');
+            return await res.json();
+        }
+
+        async function likeMessage(id) {
+            const res = await fetch(`${API_BASE}/api/messages/${id}/like`, { method: 'POST' });
+            if (!res.ok) throw new Error('like failed');
+            return await res.json();
+        }
+
+        async function renderMessages() {
+            const list = document.getElementById('msgList');
+            const countEl = document.getElementById('msgCount');
+            const msgs = await fetchMessages();
+            if (msgs.length === 0) {
+                list.innerHTML = '<div class="empty-msg">还没有留言，来做第一个吧 💌</div>';
+                countEl.textContent = '';
+                return;
+            }
+            countEl.textContent = `共 ${msgs.length} 条留言`;
+            list.innerHTML = msgs.map(m => `
+                <div class="msg-card">
+                    <div class="msg-header">
+                        <span class="msg-name">${esc(m.name)}</span>
+                        <span class="msg-emoji">${esc(m.emoji || '')}</span>
+                    </div>
+                    <div class="msg-body">${esc(m.text)}</div>
+                    <div class="msg-time">${formatTime(m.time)}</div>
+                    <button class="msg-like" onclick="doLike('${m.id}', this)">❤️ ${m.likes || 0}</button>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('submitBtn');
+            const name = document.getElementById('msgName').value.trim();
+            const text = document.getElementById('msgText').value.trim();
+            if (!text) { alert('请输入留言内容'); return; }
+            btn.disabled = true;
+            btn.textContent = '发送中...';
+            try {
+                await postMessage({ name: name || '匿名', text, emoji: selectedEmoji });
+                document.getElementById('msgText').value = '';
+                document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+                selectedEmoji = '';
+                await renderMessages();
+            } catch (e) { alert('发送失败，请检查网络连接'); console.error(e); }
+            btn.disabled = false;
+            btn.textContent = '发送留言 ❤️';
+        });
+
+        let selectedEmoji = '';
+        document.querySelectorAll('.emoji-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.toggle('active');
+                selectedEmoji = btn.classList.contains('active') ? btn.dataset.emoji : '';
+            });
+        });
+
+        async function doLike(id, btn) {
+            btn.disabled = true;
+            try {
+                const result = await likeMessage(id);
+                btn.textContent = `❤️ ${result.likes}`;
+                btn.classList.add('liked');
+            } catch (e) { console.error('点赞失败:', e); }
+            btn.disabled = false;
+        }
+
+        // 浮动爱心
+        const bg = document.getElementById('heartsBg');
+        const hearts = ['❤','💕','💗','💖','🩷'];
+        for (let i = 0; i < 25; i++) {
+            const s = document.createElement('span');
+            s.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            s.style.left = Math.random() * 100 + '%';
+            s.style.fontSize = (14 + Math.random() * 18) + 'px';
+            s.style.animationDuration = (8 + Math.random() * 12) + 's';
+            s.style.animationDelay = Math.random() * 10 + 's';
+            bg.appendChild(s);
+        }
+
+        renderMessages();
+    </script>
 </body>
 </html>
