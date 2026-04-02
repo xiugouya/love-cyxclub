@@ -110,7 +110,7 @@
       transform: translateX(3px);
     }
 
-    /* 内容卡片 */
+    /* 活动信息 */
     .section {
       background: #fff;
       border-radius: 16px;
@@ -136,27 +136,10 @@
       border-radius: 2px;
     }
 
-    /* 可编辑区域 */
-    .editable {
-      background: #fef9f9;
-      border: 1px dashed #fecaca;
-      border-radius: 12px;
-      padding: 20px;
-      min-height: 100px;
-      color: #555;
-    }
-    .editable:empty::before {
-      content: attr(data-placeholder);
-      color: #ccc;
-      font-style: italic;
-    }
-
-    /* 活动信息 */
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 16px;
-      margin-bottom: 0;
     }
     .info-card {
       background: #fef9f9;
@@ -164,10 +147,7 @@
       padding: 20px;
       text-align: center;
     }
-    .info-card .icon {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
+    .info-card .icon { font-size: 2rem; margin-bottom: 8px; }
     .info-card .label {
       font-size: 0.75rem;
       color: #999;
@@ -181,6 +161,153 @@
       color: #1a1a1a;
     }
 
+    /* 留言板 */
+    .guestbook { margin-bottom: 40px; }
+
+    .msg-form {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .msg-form .row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .msg-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid #f0e0e0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .msg-form input:focus { border-color: #e74c3c; }
+    .msg-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #f0e0e0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 80px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .msg-form textarea:focus { border-color: #e74c3c; }
+    .msg-form .emoji-row-input {
+      display: flex;
+      gap: 6px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+    .msg-form .emoji-btn {
+      background: #fef5f5;
+      border: 1.5px solid #f0e0e0;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .msg-form .emoji-btn:hover,
+    .msg-form .emoji-btn.active {
+      background: #fee;
+      border-color: #e74c3c;
+      transform: scale(1.15);
+    }
+    .msg-form .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #e74c3c, #ff6b81);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 4px;
+      font-family: inherit;
+    }
+    .msg-form .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(231,76,60,0.3);
+    }
+
+    /* 留言列表 */
+    .msg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .msg-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      position: relative;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .msg-card .msg-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .msg-card .msg-name {
+      font-weight: 700;
+      color: #e74c3c;
+      font-size: 0.95rem;
+    }
+    .msg-card .msg-emoji {
+      font-size: 1.3rem;
+    }
+    .msg-card .msg-body {
+      color: #444;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .msg-card .msg-time {
+      font-size: 0.75rem;
+      color: #bbb;
+    }
+    .msg-card .msg-like {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: 1.5px solid #f0e0e0;
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #999;
+    }
+    .msg-card .msg-like:hover,
+    .msg-card .msg-like.liked {
+      border-color: #e74c3c;
+      color: #e74c3c;
+      background: #fef5f5;
+    }
+    .empty-msg {
+      text-align: center;
+      color: #ccc;
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+
     /* 页脚 */
     .footer {
       text-align: center;
@@ -188,14 +315,12 @@
       color: #bbb;
       font-size: 0.8rem;
     }
-    .footer a {
-      color: #e74c3c;
-      text-decoration: none;
-    }
+    .footer a { color: #e74c3c; text-decoration: none; }
 
     @media (max-width: 600px) {
       .hero h1 { font-size: 2rem; }
       .section { padding: 24px; }
+      .msg-form .row { flex-direction: column; }
     }
   </style>
 </head>
@@ -222,57 +347,47 @@
       <h3>活动信息</h3>
       <div class="info-grid">
         <div class="info-card">
-          <div class="icon">📅</div>
-          <div class="label">活动日期</div>
-          <div class="value" contenteditable="true" data-placeholder="填写日期">（请填写）</div>
-        </div>
-        <div class="info-card">
-          <div class="icon">📍</div>
-          <div class="label">活动地点</div>
-          <div class="value" contenteditable="true" data-placeholder="填写地点">（请填写）</div>
-        </div>
-        <div class="info-card">
           <div class="icon">🏫</div>
           <div class="label">班级</div>
           <div class="value">九（3）班</div>
         </div>
         <div class="info-card">
           <div class="icon">💝</div>
-          <div class="label">主题</div>
-          <div class="value" contenteditable="true" data-placeholder="填写主题">（请填写）</div>
+          <div class="label">活动</div>
+          <div class="value">爱心节</div>
         </div>
       </div>
     </div>
 
-    <!-- 活动介绍（可编辑） -->
-    <div class="section">
-      <h3>活动介绍</h3>
-      <div class="editable" contenteditable="true" data-placeholder="在这里输入你们班爱心节活动的介绍内容……">
-        在这里输入你们班爱心节活动的介绍内容……
-      </div>
-    </div>
+    <!-- 留言板 -->
+    <div class="section guestbook">
+      <h3>留言板</h3>
+      <p style="color:#888; margin-bottom:20px; font-size:0.9rem;">写下你对九（3）班爱心节的祝福吧 ✨</p>
 
-    <!-- 活动流程（可编辑） -->
-    <div class="section">
-      <h3>活动流程</h3>
-      <div class="editable" contenteditable="true" data-placeholder="例如：&#10;14:00 - 开幕式&#10;14:30 - 爱心义卖&#10;16:00 - 互动游戏&#10;17:00 - 总结颁奖">
-        在这里输入活动流程安排……
+      <!-- 留言表单 -->
+      <div class="msg-form">
+        <div class="row">
+          <input type="text" id="msgName" placeholder="你的昵称" maxlength="20">
+        </div>
+        <textarea id="msgText" placeholder="写下你的留言..." maxlength="300"></textarea>
+        <div class="emoji-row-input" id="emojiRow">
+          <button class="emoji-btn" data-emoji="❤️">❤️</button>
+          <button class="emoji-btn" data-emoji="🥰">🥰</button>
+          <button class="emoji-btn" data-emoji="👏">👏</button>
+          <button class="emoji-btn" data-emoji="🎉">🎉</button>
+          <button class="emoji-btn" data-emoji="🔥">🔥</button>
+          <button class="emoji-btn" data-emoji="💪">💪</button>
+          <button class="emoji-btn" data-emoji="✨">✨</button>
+          <button class="emoji-btn" data-emoji="🌈">🌈</button>
+          <button class="emoji-btn" data-emoji="🌻">🌻</button>
+          <button class="emoji-btn" data-emoji="🕊️">🕊️</button>
+        </div>
+        <button class="submit-btn" id="submitBtn">发送留言 ❤️</button>
       </div>
-    </div>
 
-    <!-- 心愿/口号（可编辑） -->
-    <div class="section">
-      <h3>班级心愿</h3>
-      <div class="editable" contenteditable="true" data-placeholder="写下你们班在爱心节想要传递的心愿或口号……">
-        在这里写下班级心愿或口号……
-      </div>
-    </div>
-
-    <!-- 更多内容区 -->
-    <div class="section">
-      <h3>更多精彩内容</h3>
-      <div class="editable" contenteditable="true" data-placeholder="可以放照片描述、同学感言、活动花絮等等……">
-        在这里添加更多内容……
+      <!-- 留言列表 -->
+      <div class="msg-list" id="msgList">
+        <div class="empty-msg">还没有留言，来做第一个吧 💌</div>
       </div>
     </div>
 
@@ -283,5 +398,121 @@
     <p style="margin-top:4px;">love.cyxclub.top</p>
   </div>
 
+  <script>
+    // 使用 localStorage 存储留言（纯前端方案）
+    const STORAGE_KEY = 'love_guestbook_messages';
+
+    function getMessages() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch { return []; }
+    }
+
+    function saveMessages(msgs) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(msgs));
+    }
+
+    function formatTime(ts) {
+      const d = new Date(ts);
+      const pad = n => String(n).padStart(2, '0');
+      return `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function renderMessages() {
+      const list = document.getElementById('msgList');
+      const msgs = getMessages();
+      if (msgs.length === 0) {
+        list.innerHTML = '<div class="empty-msg">还没有留言，来做第一个吧 💌</div>';
+        return;
+      }
+      // 最新的在前面
+      list.innerHTML = msgs.slice().reverse().map((m, i) => {
+        const realIndex = msgs.length - 1 - i;
+        const liked = (m.likedBy || []).includes(getMyId());
+        return `
+          <div class="msg-card">
+            <div class="msg-header">
+              <span class="msg-name">${esc(m.name || '匿名')}</span>
+              <span class="msg-emoji">${esc(m.emoji || '')}</span>
+            </div>
+            <div class="msg-body">${esc(m.text)}</div>
+            <div class="msg-time">${formatTime(m.time)}</div>
+            <button class="msg-like ${liked ? 'liked' : ''}" onclick="toggleLike(${realIndex})">
+              ❤️ ${m.likes || 0}
+            </button>
+          </div>`;
+      }).join('');
+    }
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function getMyId() {
+      let id = localStorage.getItem('love_guestbook_uid');
+      if (!id) {
+        id = 'u_' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem('love_guestbook_uid', id);
+      }
+      return id;
+    }
+
+    // 选择 emoji
+    let selectedEmoji = '';
+    document.querySelectorAll('.emoji-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.toggle('active');
+        selectedEmoji = btn.classList.contains('active') ? btn.dataset.emoji : '';
+      });
+    });
+
+    // 提交留言
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const name = document.getElementById('msgName').value.trim();
+      const text = document.getElementById('msgText').value.trim();
+      if (!text) { alert('请输入留言内容'); return; }
+
+      const msgs = getMessages();
+      msgs.push({
+        name: name || '匿名',
+        text,
+        emoji: selectedEmoji,
+        time: Date.now(),
+        likes: 0,
+        likedBy: []
+      });
+      saveMessages(msgs);
+
+      document.getElementById('msgText').value = '';
+      document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+      selectedEmoji = '';
+      renderMessages();
+    });
+
+    // 点赞
+    function toggleLike(idx) {
+      const msgs = getMessages();
+      const uid = getMyId();
+      const m = msgs[idx];
+      if (!m) return;
+      if (!m.likedBy) m.likedBy = [];
+      const pos = m.likedBy.indexOf(uid);
+      if (pos >= 0) {
+        m.likedBy.splice(pos, 1);
+        m.likes = Math.max(0, (m.likes || 0) - 1);
+      } else {
+        m.likedBy.push(uid);
+        m.likes = (m.likes || 0) + 1;
+      }
+      saveMessages(msgs);
+      renderMessages();
+    }
+
+    // 初始渲染
+    renderMessages();
+  </script>
 </body>
 </html>
